@@ -47,4 +47,13 @@ public class UserController {
         return user;
     }
 
+    // 특정 유저 삭제
+    // GET /users/1 or /users/10 -> String
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id){
+        User user = userDaoService.deleteById(id);
+        if (user == null) {
+            throw new UserNotFoundException(String.format("ID[%s] not found", id));
+        }
+    }
 }
