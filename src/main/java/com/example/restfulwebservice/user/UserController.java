@@ -1,9 +1,11 @@
 package com.example.restfulwebservice.user;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class UserController {
     // 유저 생성
     // POST /users
     @PostMapping("/users")
-    public ResponseEntity<User> crateUser(@RequestBody User user){
+    public ResponseEntity<User> crateUser(@Valid @RequestBody User user){
         User savedUser = userDaoService.save(user);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
